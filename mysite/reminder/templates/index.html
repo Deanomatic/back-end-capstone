@@ -1,0 +1,7 @@
+{% include 'partials/header.html' %}
+	<ul>
+		{% for reminder in reminders %}	
+		<li>Please remember to <a href="reminders/details/{{reminder.id}}/">{{reminder.title}}</a></li>
+		{% endfor %}
+	</ul>
+{% include 'partials/footer.html' %}
