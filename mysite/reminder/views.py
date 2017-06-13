@@ -1,9 +1,9 @@
 from django.http import HttpResponse
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from .models import Reminder
 
 def index(request):
-	reminder = Reminder.objects.all()[:5]
+	reminder = Reminder.objects.all()[:10]
 	context = {
 		"reminders": reminder
 	}
@@ -18,7 +18,12 @@ def details(request, id):
 
 def add_reminder(request):
 	if(request.method == 'POST'):
-		pass
+		title = request.POST['title']
+		description = request.POST['description']
+
+		reminder = Reminder(title=title, description=description)
+		reminder.save()
+		return redirect('/reminder')
 
 	else:
-		return render(request, 'add.html')
+		return render(request, 'add_reminder.html')
