@@ -20,6 +20,7 @@ def add_reminder(request):
 	if(request.method == 'POST'):
 		title = request.POST['title']
 		description = request.POST['description']
+		print("\n\n\ntitle{}\n{}\n\n\n".format(title, description))
 
 		reminder = Reminder(title=title, description=description)
 		reminder.save()
