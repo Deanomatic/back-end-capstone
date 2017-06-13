@@ -28,3 +28,8 @@ def add_reminder(request):
 
 	else:
 		return render(request, 'add_reminder.html')
+
+def edit_reminder(request, id):
+	reminder = Reminder.objects.get(pk=id)
+	context = {"reminder": reminder}
+	return render(request, "reminder/edit_reminder.html", context)

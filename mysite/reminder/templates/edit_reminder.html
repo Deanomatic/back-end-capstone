@@ -1,0 +1,16 @@
+{% include 'partials/header.html' %}
+	<form action="edit/{{reminder.id}}" method="post">
+	{% csrf_token %} 
+	<label for="title">Title</label>
+	<input type="text" name="title" id="title" value="{ {reminder.title}}" placeholder="{{reminder.title}}"/>
+	<br>
+	<label for="text" id="text">Description</label>
+	<input type="text" name="description" id="description" value="{{reminder.description}}" placeholder="{{reminder.description}}"/>
+	<br>
+	<label id="integer">Time to remind</label>
+	<input type="integer" name="time" id="time" value="{{reminder.description}}" placeholder="{{reminder.description}}"/>
+	<br><br>
+	<input type="submit" name="Submit"/>
+	</form>
+
+{% include 'partials/footer.html' %}
