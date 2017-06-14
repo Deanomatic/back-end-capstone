@@ -1,6 +1,7 @@
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from .models import Reminder
+import arrow
 
 def index(request):
 	reminder = Reminder.objects.all()[:10]
@@ -49,3 +50,16 @@ def delete_reminder(request, id):
 	reminder = Reminder.objects.get(pk=id)
 	reminder.delete()
 	return redirect('/')
+
+def schedule_reminder():
+	"""Schedules a Celery task to send a reminder about this appointment"""
+
+	# Calculate the correct time to send this reminder
+	appointment_time = arrow.get(reminder_time, time_zone.zone)
+	reminder_time = appointment_time.replace(minutes=-settings.REMINDER_TIME)
+
+	# Schedule the Celery task
+	from .tasks import send_sms_reminder
+	result = send_sms_reminder.apply_async((pk,), eta=reminder_time)
+
+	return result.id

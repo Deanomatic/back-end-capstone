@@ -1,11 +1,13 @@
 from django.db import models
 from datetime import datetime
+from timezone_field import TimeZoneField
 
 class Reminder(models.Model):
     title = models.CharField(max_length=200)
     description = models.CharField(max_length=300)
     reminder_time = models.DateTimeField(null=True)
     time_created = models.DateTimeField(default=datetime.now, blank=True)
+    time_zone = TimeZoneField(default='US/Central')
 
     def __str__(self):
     	return self.title
