@@ -1,65 +1,41 @@
-from django.http import HttpResponse
-from django.shortcuts import render, redirect
-from .models import Reminder
-import arrow
+from django.contrib.messages.views import SuccessMessageMixin
+from django.core.urlresolvers import reverse_lazy
+from django.views.generic import DetailView
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
+from django.views.generic.list import ListView
 
-def index(request):
-	reminder = Reminder.objects.all()[:10]
-	context = {
-		"reminders": reminder
-	}
-	return render(request, "index.html", context)
+from .models import Appointment
 
-def details(request, id):
-	reminder = Reminder.objects.get(pk=id)
-	context = {
-		"details": reminder
-	}
-	return render(request, "details.html", context)
+class AppointmentListView(ListView):
+    """Shows users a list of appointments"""
 
-def add_reminder(request):
-	if(request.method == 'POST'):
-		title = request.POST['title']
-		description = request.POST['description']
-		reminder_time = request.POST['time']
-		print("\n\n\ntitle{}\n{}\n\n\n".format(title, description))
+    model = Appointment
 
-		reminder = Reminder(title=title, description=description, reminder_time=reminder_time)
-		reminder.save() 
-		return redirect('/')
 
-	else:
-		return render(request, 'add_reminder.html')
+class AppointmentDetailView(DetailView):
+    """Shows users a single appointment"""
 
-def edit_reminder(request, id):
-	reminder = Reminder.objects.get(pk=id)
-	# print("\n\n\nHello again{}\n\n\n".format(reminder))
-	context = {"reminder": reminder}
-	return render(request, "edit_reminder.html", context)
+    model = Appointment
 
-def update_reminder(request, id):	
-	reminder = Reminder.objects.get(pk=id)
-	reminder.title = request.POST['title']
-	reminder.description = request.POST['description'] 
-	reminder.reminder_time = request.POST['time']
-	print("\n\n\ntime{}\n\n\n".format(request.POST['time']))
-	reminder.save()
-	return redirect('/') 
 
-def delete_reminder(request, id):
-	reminder = Reminder.objects.get(pk=id)
-	reminder.delete()
-	return redirect('/')
+class AppointmentCreateView(SuccessMessageMixin, CreateView):
+    """Powers a form to create a new appointment"""
 
-def schedule_reminder():
-	"""Schedules a Celery task to send a reminder about this appointment"""
+    model = Appointment
+    fields = ['name', 'phone_number', 'time', 'time_zone']
+    success_message = 'Appointment successfully created.'
 
-	# Calculate the correct time to send this reminder
-	appointment_time = arrow.get(reminder_time, time_zone.zone)
-	reminder_time = appointment_time.replace(minutes=-settings.REMINDER_TIME)
 
-	# Schedule the Celery task
-	from .tasks import send_sms_reminder
-	result = send_sms_reminder.apply_async((pk,), eta=reminder_time)
+class AppointmentUpdateView(SuccessMessageMixin, UpdateView):
+    """Powers a form to edit existing appointments"""
 
-	return result.id
+    model = Appointment
+    fields = ['name', 'phone_number', 'time', 'time_zone']
+    success_message = 'Appointment successfully updated.'
+
+
+class AppointmentDeleteView(DeleteView):
+    """Prompts users to confirm deletion of an appointment"""
+
+    model = Appointment
+    success_url = reverse_lazy('list_appointments')
