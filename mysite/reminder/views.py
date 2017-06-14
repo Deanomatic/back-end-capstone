@@ -20,9 +20,10 @@ def add_reminder(request):
 	if(request.method == 'POST'):
 		title = request.POST['title']
 		description = request.POST['description']
+		reminder_time = request.POST['time']
 		print("\n\n\ntitle{}\n{}\n\n\n".format(title, description))
 
-		reminder = Reminder(title=title, description=description)
+		reminder = Reminder(title=title, description=description, reminder_time=reminder_time)
 		reminder.save()
 		return redirect('/')
 
@@ -38,8 +39,9 @@ def edit_reminder(request, id):
 def update_reminder(request, id):	
 	reminder = Reminder.objects.get(pk=id)
 	reminder.title = request.POST['title']
-	reminder.description = request.POST['description']
-	# reminder.reminder_time = request.POST.get['reminder_time', False]
+	reminder.description = request.POST['description'] 
+	reminder.reminder_time = request.POST['time']
+	print("\n\n\ntime{}\n\n\n".format(request.POST['time']))
 	reminder.save()
 	return redirect('/') 
 

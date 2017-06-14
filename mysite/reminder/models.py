@@ -4,7 +4,7 @@ from datetime import datetime
 class Reminder(models.Model):
     title = models.CharField(max_length=200)
     description = models.CharField(max_length=300)
-    reminder_time = models.IntegerField(null=True)
+    reminder_time = models.DateTimeField(null=True)
     time_created = models.DateTimeField(default=datetime.now, blank=True)
 
     def __str__(self):
