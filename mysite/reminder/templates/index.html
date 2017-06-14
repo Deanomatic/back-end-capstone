@@ -2,7 +2,9 @@
 	<ul>
 		{% for reminder in reminders %}	
 		<li>Please remember to <a href="reminders/details/{{reminder.id}}/">{{reminder.title}}</a>
-		<a href="reminder/edit_reminder/{{reminder.id}}">edit</a>
+		<br>
+		<button><a href="reminder/edit_reminder/{{reminder.id}}">edit</a></button>
+		<button><a href="reminder/delete_reminder/{{reminder.id}}">delete</a></button>
 		</li>
 		{% endfor %}
 	</ul>

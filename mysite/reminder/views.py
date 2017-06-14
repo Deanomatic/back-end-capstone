@@ -24,12 +24,26 @@ def add_reminder(request):
 
 		reminder = Reminder(title=title, description=description)
 		reminder.save()
-		return redirect('/reminder')
+		return redirect('/')
 
 	else:
 		return render(request, 'add_reminder.html')
 
 def edit_reminder(request, id):
 	reminder = Reminder.objects.get(pk=id)
+	# print("\n\n\nHello again{}\n\n\n".format(reminder))
 	context = {"reminder": reminder}
-	return render(request, "reminder/edit_reminder.html", context)
+	return render(request, "edit_reminder.html", context)
+
+def update_reminder(request, id):	
+	reminder = Reminder.objects.get(pk=id)
+	reminder.title = request.POST['title']
+	reminder.description = request.POST['description']
+	# reminder.reminder_time = request.POST.get['reminder_time', False]
+	reminder.save()
+	return redirect('/') 
+
+def delete_reminder(request, id):
+	reminder = Reminder.objects.get(pk=id)
+	reminder.delete()
+	return redirect('/')
