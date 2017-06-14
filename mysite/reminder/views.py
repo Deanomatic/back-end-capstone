@@ -24,7 +24,7 @@ def add_reminder(request):
 		print("\n\n\ntitle{}\n{}\n\n\n".format(title, description))
 
 		reminder = Reminder(title=title, description=description, reminder_time=reminder_time)
-		reminder.save()
+		reminder.save() 
 		return redirect('/')
 
 	else:
