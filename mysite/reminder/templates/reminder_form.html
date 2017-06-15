@@ -10,9 +10,9 @@
       <div class="page-header">
         <h1>
           {% if not object.pk %}
-            New appointment
+            New reminder
           {% else %}
-            Edit appointment
+            Edit reminder
           {% endif %}
           </h1>
       </div>
@@ -25,9 +25,9 @@
             <a href="#back" class="btn btn-default">Cancel</a>
             <button type="submit" class="btn btn-primary">
               {% if not object.pk %}
-                Create appointment
+                Create reminder
               {% else %}
-                Update appointment
+                Update reminder
               {% endif %}
             </button>
           </div>

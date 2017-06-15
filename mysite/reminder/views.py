@@ -4,38 +4,38 @@ from django.views.generic import DetailView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic.list import ListView
 
-from .models import Appointment
+from .models import Reminder
 
-class AppointmentListView(ListView):
-    """Shows users a list of appointments"""
+class ReminderListView(ListView):
+    """Shows users a list of reminders"""
 
-    model = Appointment
-
-
-class AppointmentDetailView(DetailView):
-    """Shows users a single appointment"""
-
-    model = Appointment
+    model = Reminder
 
 
-class AppointmentCreateView(SuccessMessageMixin, CreateView):
-    """Powers a form to create a new appointment"""
+class ReminderDetailView(DetailView):
+    """Shows users a single reminder"""
 
-    model = Appointment
+    model = Reminder
+
+
+class ReminderCreateView(SuccessMessageMixin, CreateView):
+    """Powers a form to create a new reminder"""
+
+    model = Reminder
     fields = ['name', 'phone_number', 'time', 'time_zone']
-    success_message = 'Appointment successfully created.'
+    success_message = 'reminder successfully created.'
 
 
-class AppointmentUpdateView(SuccessMessageMixin, UpdateView):
-    """Powers a form to edit existing appointments"""
+class ReminderUpdateView(SuccessMessageMixin, UpdateView):
+    """Powers a form to edit existing reminders"""
 
-    model = Appointment
+    model = Reminder
     fields = ['name', 'phone_number', 'time', 'time_zone']
-    success_message = 'Appointment successfully updated.'
+    success_message = 'reminder successfully updated.'
 
 
-class AppointmentDeleteView(DeleteView):
-    """Prompts users to confirm deletion of an appointment"""
+class ReminderDeleteView(DeleteView):
+    """Prompts users to confirm deletion of an reminder"""
 
-    model = Appointment
-    success_url = reverse_lazy('list_appointments')
+    model = Reminder
+    success_url = reverse_lazy('list_reminders')

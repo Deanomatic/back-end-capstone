@@ -6,7 +6,7 @@ from twilio.rest import Client
 
 import arrow
 
-from .models import Appointment
+from .models import Reminder
 
 
 # Uses credentials from the TWILIO_ACCOUNT_SID and TWILIO_AUTH_TOKEN
@@ -14,24 +14,24 @@ from .models import Appointment
 client = Client()
 
 @shared_task
-def send_sms_reminder(appointment_id):
+def send_sms_reminder(reminder_id):
     """Send a reminder to a phone using Twilio SMS"""
-    # Get our appointment from the database
+    # Get our reminder from the database
     try:
-        appointment = Appointment.objects.get(pk=appointment_id)
-    except Appointment.DoesNotExist:
-        # The appointment we were trying to remind someone about
+        reminder = Reminder.objects.get(pk=reminder_id)
+    except Reminder.DoesNotExist:
+        # The Reminderreminder we were trying to remind someone about
         # has been deleted, so we don't need to do anything
         return
 
-    appointment_time = arrow.get(appointment.time, appointment.time_zone.zone)
-    body = 'Hi {0}. You have an appointment coming up at {1}.'.format(
-        appointment.name,
-        appointment_time.format('h:mm a')
+    reminder_time = arrow.get(reminder.time, reminder.time_zone.zone)
+    body = 'Hi {0}. You have an reminder coming up at {1}.'.format(
+        reminder.name,
+        reminder_time.format('h:mm a')
     )
 
     message = client.messages.create(
         body=body,
-        to=appointment.phone_number,
+        to=reminder.phone_number,
         from_=settings.TWILIO_NUMBER,
     )
