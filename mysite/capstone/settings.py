@@ -51,7 +51,7 @@ DJANGO_APPS = (
 THIRD_PARTY_APPS = (
     'bootstrap3',
     'django_forms_bootstrap',
-    'timezone_field'
+    'timezone_field',
 )
 
 LOCAL_APPS = (
@@ -71,9 +71,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    DJANGO_APPS,
-    THIRD_PARTY_APPS,
-    LOCAL_APPS,
+    'bootstrap3',
+    'django_forms_bootstrap',
+    'timezone_field',
 ]
 
 MIDDLEWARE = [

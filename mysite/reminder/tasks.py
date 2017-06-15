@@ -5,7 +5,7 @@ from django.conf import settings
 from twilio.rest import Client
 
 import arrow
-
+ 
 from .models import Reminder
 
 
@@ -25,7 +25,7 @@ def send_sms_reminder(reminder_id):
         return
 
     reminder_time = arrow.get(reminder.time, reminder.time_zone.zone)
-    body = 'Hi {0}. You have an reminder coming up at {1}.'.format(
+    body = 'Hi {0}. You have a reminder coming up at {1}.'.format(
         reminder.name,
         reminder_time.format('h:mm a')
     )
