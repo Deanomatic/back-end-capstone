@@ -20,10 +20,10 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/1.11/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'a6c&9j5h7p3)tcqits8uev9q4yu38&ehax)tcl8_ukcz(b4w6a'
+SECRET_KEY = 'not_secret'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 # Twilio API
 TWILIO_NUMBER = os.environ.get('TWILIO_NUMBER')

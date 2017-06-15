@@ -23,7 +23,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'a6c&9j5h7p3)tcqits8uev9q4yu38&ehax)tcl8_ukcz(b4w6a'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 # Twilio API
 TWILIO_NUMBER = os.environ.get('TWILIO_NUMBER')
