@@ -74,7 +74,7 @@ INSTALLED_APPS = [
     'bootstrap3',
     'django_forms_bootstrap',
     'timezone_field',
-    'reminders',
+    'reminder',
 ]
 
 MIDDLEWARE = [
