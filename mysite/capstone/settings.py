@@ -11,11 +11,6 @@ https://docs.djangoproject.com/en/1.11/ref/settings/
 """
 
 import os
-import djcelery
-
-
-djcelery.setup_loader()
-# BROKER_URL = "django://"
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -46,15 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'djcelery',
-    'komu.transport.django'
 ]
-
-THIRD_PARTY_APPS = (
-    'bootstrap3',
-    'django_forms_bootstrap',
-    'timezone_field'
-)
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
