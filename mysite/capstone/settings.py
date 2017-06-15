@@ -23,7 +23,17 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'a6c&9j5h7p3)tcqits8uev9q4yu38&ehax)tcl8_ukcz(b4w6a'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
+
+# Twilio API
+TWILIO_NUMBER = os.environ.get('TWILIO_NUMBER')
+
+# Address of Redis instance, our Celery broker
+BROKER_URL = 'redis://localhost:6379/0'
+BROKER_POOL_LIMIT = 8
+
+# Reminder time: how early text messages are sent in advance of appointments
+REMINDER_TIME = 30 # minutes
 
 ALLOWED_HOSTS = []
 
