@@ -59,7 +59,7 @@ class Reminder(models.Model):
 
         # Save our reminder, which populates self.pk,
         # which is used in schedule_reminder
-        super(reminder, self).save(*args, **kwargs)
+        super(Reminder, self).save(*args, **kwargs)
 
         # Schedule a new reminder task for this reminder
         self.task_id = self.schedule_reminder()
