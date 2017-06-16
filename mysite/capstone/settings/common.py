@@ -26,7 +26,7 @@ SECRET_KEY = 'a6c&9j5h7p3)tcqits8uev9q4yu38&ehax)tcl8_ukcz(b4w6a'
 DEBUG = True
 
 # Twilio API
-TWILIO_NUMBER = os.environ.get('TWILIO_NUMBER')
+TWILIO_NUMBER = os.environ.get('+1615806617')
 
 # Address of Redis instance, our Celery broker
 BROKER_URL = 'redis://localhost:6379/0'
