@@ -1,11 +1,18 @@
-{% include 'partials/header.html' %}
-	<ul>
-		{% for reminder in reminders %}	
-		<li>Please remember to <a href="reminders/details/{{reminder.id}}/">{{reminder.title}}</a>
-		<br>
-		<button><a href="reminder/edit_reminder/{{reminder.id}}">edit</a></button>
-		<button><a href="reminder/delete_reminder/{{reminder.id}}">delete</a></button>
-		</li>
-		{% endfor %}
-	</ul>
-{% include 'partials/footer.html' %}
+{% extends "base.html" %}
+
+{% block title %}Home{% endblock title %}
+
+{% block content %}
+  <div class="row">
+    <div class="col-lg-9">
+      
+      <h1>Reminders with Django</h1>
+
+      <p>This demo application will show you how to implement SMS appointment reminders with <a href="http://twilio.com">Twilio</a> in Django.
+
+      <p><a class="btn btn-primary btn-xs" href="{% url 'new_reminder' %}">Create a new Reminder</a> to see how it works!</p>
+
+    </div>
+
+  </div><!--/row-->
+{% endblock %}

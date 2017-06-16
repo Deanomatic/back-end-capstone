@@ -1,8 +1,8 @@
 from django.conf.urls import url
-
+ 
 from .views import ReminderListView, ReminderCreateView, ReminderDetailView, ReminderUpdateView, ReminderDeleteView
 
-
+ 
 
 urlpatterns = [
     # List and detail views
