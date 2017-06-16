@@ -19,7 +19,7 @@ from django.views.generic import TemplateView
 
 urlpatterns = [
     url(r'^$', TemplateView.as_view(template_name='index.html'), name='home'),
-	url(r'^capstone', include('reminders.urls')),
+	url(r'^', include('reminders.urls')),
     # url(r'^reminder/', include('reminder.urls')),
     url(r'^admin/', admin.site.urls),
 ]
