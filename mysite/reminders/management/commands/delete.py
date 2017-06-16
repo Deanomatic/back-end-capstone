@@ -19,6 +19,6 @@ class Command(BaseCommand):
     """
 
     def handle(self, *args, **options):
-        os.system('rm reminder/migrations/*.py;')   #deletes all of the .py files in the migrations directory except for the __init__.py file.
-        os.system('touch reminder/migrations/__init__.py;') #re-create the __init__.py file.
-        os.system('rm db.sqlite3')  #deletes the database file.
+        os.system('rm reminders/migrations/*.py')   #deletes all of the .py files in the migrations directory except for the __init__.py file.
+        os.system('touch reminders/migrations/__init__.py') #re-create the __init__.py file.
+        os.system('rm capstone/db.sqlite3')  #deletes the database file.

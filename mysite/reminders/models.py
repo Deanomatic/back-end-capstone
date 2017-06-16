@@ -1,6 +1,6 @@
 from __future__ import unicode_literals
 
-from reminder.settings import celery_app
+from capstone.settings import celery_app
 from django.conf import settings
 from django.core.exceptions import ValidationError
 from django.core.urlresolvers import reverse

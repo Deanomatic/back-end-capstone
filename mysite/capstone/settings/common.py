@@ -64,7 +64,7 @@ INSTALLED_APPS = [
     'material.theme.lightblue',
     'material',
     'material.admin',
-    'reminder.apps.ReminderConfig',
+    'reminders.apps.ReminderConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -74,7 +74,7 @@ INSTALLED_APPS = [
     'bootstrap3',
     'django_forms_bootstrap',
     'timezone_field',
-    'reminder',
+    # 'reminders',
 ]
 
 MIDDLEWARE = [
