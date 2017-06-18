@@ -13,7 +13,7 @@ https://docs.djangoproject.com/en/1.11/ref/settings/
 import os
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))  
 
 
 # Quick-start development settings - unsuitable for production
@@ -29,7 +29,7 @@ DEBUG = True
 TWILIO_NUMBER = os.environ.get('+1615806617')
 
 # Address of Redis instance, our Celery broker
-BROKER_URL = 'redis://localhost:6379/0'
+BROKER_URL = 'redis://localhost'
 BROKER_POOL_LIMIT = 8
 
 # Reminder time: how early text messages are sent in advance of appointments
