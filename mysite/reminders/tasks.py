@@ -6,7 +6,7 @@ from twilio.rest import Client
 
 import arrow
  
-from .models import Reminder
+from .models import Reminder 
 
 
 # Uses credentials from the TWILIO_ACCOUNT_SID and TWILIO_AUTH_TOKEN
@@ -29,8 +29,9 @@ def send_sms_reminder(reminder_id):
         reminder.name,
         reminder_time.format('h:mm a')
     )
-
+ 
     message = client.messages.create(
+        
         body=body,
         to=reminder.phone_number,
         from_=settings.TWILIO_NUMBER,

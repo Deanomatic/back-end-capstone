@@ -6,7 +6,7 @@ from .views import ReminderListView, ReminderCreateView, ReminderDetailView, Rem
 
 urlpatterns = [
     # List and detail views
-    url(r'^$', ReminderListView.as_view(), name='list_reminders'),
+    url(r'^list$', ReminderListView.as_view(), name='list_reminders'),
     url(r'^(?P<pk>[0-9]+)$', ReminderDetailView.as_view(), name='view_reminder'),
 
     # Create, update, delete

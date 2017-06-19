@@ -33,7 +33,7 @@ class Reminder(models.Model):
 
         reminder_time = arrow.get(self.time, self.time_zone.zone)
 
-        if reminder_time < arrow.utcnow():
+        if reminder_time < arrow.utcnow(): 
             raise ValidationError('You cannot schedule an reminder for the past. Please check your time and time_zone')
 
     def schedule_reminder(self):
