@@ -17,6 +17,7 @@ import arrow
 class Reminder(models.Model):
     name = models.CharField(max_length=150)
     phone_number = models.CharField(max_length=15)
+    description = models.CharField(max_length=255)
     time = models.DateTimeField()
     time_zone = TimeZoneField(default='US/Central')
 
@@ -89,8 +90,7 @@ def send_sms_reminder(reminder_id):
         return
 
     reminder_time = arrow.get(reminder.time, reminder.time_zone.zone)
-    body = 'Hi {0}. You have a reminder coming up at {1}.'.format(reminder.name,
-     reminder_time.format('h:mm a'))
+    body = 'Your reminder is to {0}. Memento says {1}.'.format(reminder.name, reminder.description)
  
     message = client.messages.create(
         

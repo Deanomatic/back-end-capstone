@@ -22,7 +22,7 @@ class ReminderCreateView(SuccessMessageMixin, CreateView):
     """Powers a form to create a new reminder"""
 
     model = Reminder
-    fields = ['name', 'phone_number', 'time', 'time_zone']
+    fields = ['name', 'phone_number', 'time', 'description', 'time_zone']
     success_message = 'reminder successfully created.'
 
 
@@ -30,7 +30,7 @@ class ReminderUpdateView(SuccessMessageMixin, UpdateView):
     """Powers a form to edit existing reminders"""
 
     model = Reminder
-    fields = ['name', 'phone_number', 'time', 'time_zone']
+    fields = ['name', 'phone_number', 'time', 'description', 'time_zone']
     success_message = 'reminder successfully updated.'
 
 
