@@ -7,8 +7,10 @@ from django.core.urlresolvers import reverse
 from django.db import models
 from django.utils.encoding import python_2_unicode_compatible
 from timezone_field import TimeZoneField
-
+from .tasks import send_sms_reminder
 import arrow
+
+# Schedule the Celery task
 
 
 @python_2_unicode_compatible
@@ -16,7 +18,7 @@ class Reminder(models.Model):
     name = models.CharField(max_length=150)
     phone_number = models.CharField(max_length=15)
     time = models.DateTimeField()
-    time_zone = TimeZoneField(default='US/Pacific')
+    time_zone = TimeZoneField(default='US/Central')
 
     # Additional fields not visible to users
     task_id = models.CharField(max_length=50, blank=True, editable=False)
@@ -41,10 +43,7 @@ class Reminder(models.Model):
 
         # Calculate the correct time to send this reminder
         reminder_time = arrow.get(self.time, self.time_zone.zone)
-        reminder_time = reminder_time.replace(minutes=-settings.REMINDER_TIME)
-
-        # Schedule the Celery task
-        from .tasks import send_sms_reminder
+        # reminder_time = reminder_time.replace(minutes=-settings.REMINDER_TIME)
         result = send_sms_reminder.apply_async((self.pk,), eta=reminder_time)
 
         return result.id
