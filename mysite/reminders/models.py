@@ -1,5 +1,8 @@
 from __future__ import unicode_literals
 
+from capstone.settings import common
+from celery import shared_task 
+from twilio.rest import Client
 from capstone.settings import celery_app
 from django.conf import settings
 from django.core.exceptions import ValidationError
@@ -7,13 +10,10 @@ from django.core.urlresolvers import reverse
 from django.db import models
 from django.utils.encoding import python_2_unicode_compatible
 from timezone_field import TimeZoneField
-from .tasks import send_sms_reminder
 import arrow
 
-# Schedule the Celery task
 
-
-@python_2_unicode_compatible
+# @python_2_unicode_compatible
 class Reminder(models.Model):
     name = models.CharField(max_length=150)
     phone_number = models.CharField(max_length=15)
@@ -44,6 +44,7 @@ class Reminder(models.Model):
         # Calculate the correct time to send this reminder
         reminder_time = arrow.get(self.time, self.time_zone.zone)
         # reminder_time = reminder_time.replace(minutes=-settings.REMINDER_TIME)
+        # from .tasks import send_sms_reminder
         result = send_sms_reminder.apply_async((self.pk,), eta=reminder_time)
 
         return result.id
@@ -65,3 +66,35 @@ class Reminder(models.Model):
 
         # Save our reminder again, with the new task_id
         super(Reminder, self).save(*args, **kwargs)
+
+
+# Uses credentials from the TWILIO_ACCOUNT_SID and API_SECRET
+# environment variables
+
+@shared_task
+def send_sms_reminder(reminder_id):
+    """Send a reminder to a phone using Twilio SMS"""
+    TWILIO_ACCOUNT_SID = "AC4ddddb7fb7c8577e8aecee84587d1bd9"
+    API_SECRET = "SGYckG9JQQY91aYUBAhyScF2X8ZP6j4F"
+    API_KEY = "SK8a7be60f13b6742ca9e120f41578f41b"
+    TWILIO_NUMBER = '+16158066174'
+    client = Client(API_KEY, API_SECRET, TWILIO_ACCOUNT_SID)
+
+    # Get our reminder from the database
+    try:
+        reminder = Reminder.objects.get(pk=reminder_id)
+    except Reminder.DoesNotExist:
+        # The Reminderreminder we were trying to remind someone about
+        # has been deleted, so we don't need to do anything
+        return
+
+    reminder_time = arrow.get(reminder.time, reminder.time_zone.zone)
+    body = 'Hi {0}. You have a reminder coming up at {1}.'.format(reminder.name,
+     reminder_time.format('h:mm a'))
+ 
+    message = client.messages.create(
+        
+        body=body,
+        to=reminder.phone_number,
+        from_=TWILIO_NUMBER,
+    )
