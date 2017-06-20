@@ -14,7 +14,7 @@ from timezone_field import TimeZoneField
 import arrow
 
 
-# @python_2_unicode_compatible
+
 class Reminder(models.Model):
     title = models.CharField(max_length=150)
     phone_number = models.CharField(max_length=15)
