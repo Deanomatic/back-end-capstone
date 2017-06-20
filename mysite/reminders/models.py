@@ -16,7 +16,7 @@ import arrow
 
 # @python_2_unicode_compatible
 class Reminder(models.Model):
-    name = models.CharField(max_length=150)
+    title = models.CharField(max_length=150)
     phone_number = models.CharField(max_length=15)
     description = models.CharField(max_length=255)
     time = models.DateTimeField()
@@ -27,7 +27,7 @@ class Reminder(models.Model):
     created = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return 'reminder #{0} - {1}'.format(self.pk, self.name)
+        return 'reminder #{0} - {1}'.format(self.pk, self.title)
 
     def get_absolute_url(self):
         return reverse('view_reminder', args=[str(self.id)])
@@ -95,7 +95,7 @@ def send_sms_reminder(reminder_id):
         return
 
     reminder_time = arrow.get(reminder.time, reminder.time_zone.zone)
-    body = 'Your reminder is to {0}. Memento says {1}.'.format(reminder.name, reminder.description)
+    body = 'Your Memento {0}. It says {1}.'.format(reminder.title, reminder.description)
  
     message = client.messages.create(
         
