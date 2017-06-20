@@ -1,15 +1,16 @@
 from __future__ import unicode_literals
 
-from capstone.settings import common
+# from capstone.settings import common
 from celery import shared_task 
 from twilio.rest import Client
-from capstone.settings import celery_app
+from capstone.settings import celery_app, common
 from django.conf import settings
 from django.core.exceptions import ValidationError
 from django.core.urlresolvers import reverse
 from django.db import models
 from django.utils.encoding import python_2_unicode_compatible
 from timezone_field import TimeZoneField
+
 import arrow
 
 
@@ -37,6 +38,7 @@ class Reminder(models.Model):
         reminder_time = arrow.get(self.time, self.time_zone.zone)
 
         if reminder_time < arrow.utcnow(): 
+
             raise ValidationError('You cannot schedule an reminder for the past. Please check your time and time_zone')
 
     def schedule_reminder(self):
@@ -44,8 +46,10 @@ class Reminder(models.Model):
 
         # Calculate the correct time to send this reminder
         reminder_time = arrow.get(self.time, self.time_zone.zone)
+
         # reminder_time = reminder_time.replace(minutes=-settings.REMINDER_TIME)
         # from .tasks import send_sms_reminder
+
         result = send_sms_reminder.apply_async((self.pk,), eta=reminder_time)
 
         return result.id
@@ -60,6 +64,7 @@ class Reminder(models.Model):
 
         # Save our reminder, which populates self.pk,
         # which is used in schedule_reminder
+
         super(Reminder, self).save(*args, **kwargs)
 
         # Schedule a new reminder task for this reminder
@@ -98,3 +103,4 @@ def send_sms_reminder(reminder_id):
         to=reminder.phone_number,
         from_=TWILIO_NUMBER,
     )
+

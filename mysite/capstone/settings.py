@@ -64,7 +64,7 @@ INSTALLED_APPS = [
     'material.theme.lightblue',
     'material',
     'material.admin',
-    'reminder.apps.ReminderConfig',
+    'reminder.apps.ReminderConfig', 
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
