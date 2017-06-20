@@ -23,7 +23,7 @@ class ReminderCreateView(SuccessMessageMixin, CreateView):
 
     model = Reminder
 
-    fields = ['name', 'phone_number', 'time', 'description', 'time_zone']
+    fields = ['title', 'phone_number', 'time', 'description', 'time_zone']
 
     success_message = 'reminder successfully created.'
 
@@ -33,7 +33,7 @@ class ReminderUpdateView(SuccessMessageMixin, UpdateView):
 
     model = Reminder
 
-    fields = ['name', 'phone_number', 'time', 'description', 'time_zone']
+    fields = ['title', 'phone_number', 'time', 'description', 'time_zone']
 
     success_message = 'reminder successfully updated.'
 
