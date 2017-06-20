@@ -1,3 +1,5 @@
+# This is for when the project is in production only. Not currently ready for prduction.
+
 # '''
 # Production settings
 # - Set secret key from environment variable
