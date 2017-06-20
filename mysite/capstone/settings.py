@@ -25,8 +25,38 @@ SECRET_KEY = 'a6c&9j5h7p3)tcqits8uev9q4yu38&ehax)tcl8_ukcz(b4w6a'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
+# Twilio API
+TWILIO_NUMBER = os.environ.get('+16158066174')
+
+# Address of Redis instance, our Celery broker
+BROKER_URL = 'redis://localhost'
+BROKER_POOL_LIMIT = 8
+
+# Reminder time: how early text messages are sent in advance of appointments
+REMINDER_TIME = 30 # minutes
+
 ALLOWED_HOSTS = []
 
+# Application definition
+
+DJANGO_APPS = (
+    'django.contrib.admin',
+    'django.contrib.auth',
+    'django.contrib.contenttypes',
+    'django.contrib.sessions',
+    'django.contrib.messages',
+    'django.contrib.staticfiles'
+)
+
+THIRD_PARTY_APPS = (
+    'bootstrap3',
+    'django_forms_bootstrap',
+    'timezone_field',
+)
+
+LOCAL_APPS = (
+    'reminders',
+)
 
 # Application definition
 
@@ -41,6 +71,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'bootstrap3',
+    'django_forms_bootstrap',
+    'timezone_field',
 ]
 
 MIDDLEWARE = [
@@ -70,6 +103,8 @@ TEMPLATES = [
         },
     },
 ]
+
+CRISPY_TEMPLATE_PACK = 'bootstrap3'
 
 WSGI_APPLICATION = 'capstone.wsgi.application'
 

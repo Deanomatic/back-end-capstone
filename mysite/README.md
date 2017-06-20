@@ -5,3 +5,5 @@ Pip installs:
 `pip install whitenoise`
 `pip install celery[redis]`
 `pip install arrow`
+
+celery -A capstone.settings worker -l info
