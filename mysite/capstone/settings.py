@@ -37,6 +37,10 @@ REMINDER_TIME = 30 # minutes
 
 ALLOWED_HOSTS = []
 
+TEMPLATE_DIRS = (
+    os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(__file__))), "static", "templates"),
+    )
+
 # Application definition
 
 DJANGO_APPS = (
@@ -61,7 +65,7 @@ LOCAL_APPS = (
 # Application definition
 
 INSTALLED_APPS = [
-    'material.theme.lightblue',
+    'material.theme.deeppurple',
     'material',
     'material.admin',
     'reminder.apps.ReminderConfig', 
