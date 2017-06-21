@@ -95,7 +95,7 @@ def send_sms_reminder(reminder_id):
         return
 
     reminder_time = arrow.get(reminder.time, reminder.time_zone.zone)
-    body = 'Your Memento: {0}- It says {1}.'.format(reminder.title, reminder.description)
+    body = "Your Memento title is {}. It says {}.".format(reminder.title, reminder.description)
  
     message = client.messages.create(
         

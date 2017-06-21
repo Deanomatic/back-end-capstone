@@ -18,8 +18,8 @@ from django.contrib import admin
 from django.views.generic import TemplateView
 
 urlpatterns = [
-    url(r'^$', TemplateView.as_view(template_name='index.html'), name='home'),
-    url(r'^home/', admin.site.urls),
-    url(r'^', include('reminders.urls')),
+    url(r'^index$', TemplateView.as_view(template_name='index.html'), name='home'),
+    url(r'^', admin.site.urls),
+    url(r'^home/', include('reminders.urls')),
     # url(r'^reminder/', include('reminder.urls')),
 ]
