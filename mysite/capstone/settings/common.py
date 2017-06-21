@@ -61,7 +61,7 @@ LOCAL_APPS = (
 # Application definition
 
 INSTALLED_APPS = [
-    'material.theme.lightblue',
+    'material.theme.deeppurple',
     'material',
     'material.admin',
     'reminders.apps.ReminderConfig',
