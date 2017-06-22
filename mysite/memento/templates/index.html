@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block title %}Home{% endblock title %}
+
+{% block content %}
+  <div class="row">
+    <div class="col-lg-9">
+      
+      <h1>Create Your Reminders Here</h1>
+
+
+      <p><a class="btn btn-primary btn-xs" href="{% url 'new_reminder' %}">Create a new Reminder</a> to see how it works!</p>
+
+    </div>
+
+  </div><!--/row-->
+{% endblock %}
