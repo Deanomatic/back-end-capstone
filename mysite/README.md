@@ -14,8 +14,7 @@
 * This app utilizes broker/message queue services called Celery and Redis
 * In order for the reminders to actually be sent Celery must be running. To run Celery type `celery -A capstone.settings worker -l info`
 
-Redis is not made for windows. So to get around this some seperate files were downloaded from a repo linked to the Redis site that makes Redis usable for windows. Click [here](https://github.com/MSOpenTech/redis) for details. This is not the conventional way to use Redis. If you are running a mac then the simple pip install above will work.
-
+Redis is not made for Windows. All of the extra Redis files in this project are only needed for Windows. These files were downloaded from one of the Redis Github repositorie. For a Mac user the above pip install is all that is needed. Click [here](https://github.com/MSOpenTech/redis) for details.
 ---
 # Purpose of the app
 
