@@ -18,4 +18,4 @@ Redis is not made for Windows. All of the extra Redis files in this project are 
 ---
 # Purpose of the app
 
-> This is another way to help people keep track of their busy schedules. It provides a central place to keep track of everything. It also allows users to remind others of tasks at the chosen time. More are to be built out in this app in the future.    The frontend of this app uses django-material and takes advantage of the robust django admin.
+> This is another way to help people keep track of their busy schedules. It provides a central place to keep track of everything. It also allows users to remind others of tasks at the chosen time. More is to be built out in this app in the future. The frontend of this app uses django-material and takes advantage of the robust django admin.
